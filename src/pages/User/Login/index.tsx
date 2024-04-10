@@ -1,7 +1,8 @@
 import Footer from '@/components/Footer';
 import { getPhoneCaptcha, login, loginByPhone } from '@/services/user/api';
 import { IconFont, StringUtils } from '@/utils';
-import { GITEE_OAUTH_URL } from '@/utils/constants';
+// import {GITEE_OAUTH_URL} from '@/utils/constants';
+import { terminal } from '@@/exports';
 import { LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons';
 import {
   LoginForm,
@@ -54,7 +55,8 @@ const Login: React.FC = () => {
   };
 
   const goAuth = async () => {
-    history.push(GITEE_OAUTH_URL);
+    message.warning('项目演示模式，该功能暂时禁用');
+    // history.push(GITEE_OAUTH_URL);
   };
 
   const ActionIcons = () => {
@@ -123,7 +125,7 @@ const Login: React.FC = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      terminal.log(error);
       message.error('登录失败，请重试！');
     }
   };
@@ -242,7 +244,6 @@ const Login: React.FC = () => {
                       return;
                     }
                   }
-                  throw new Error('获取验证码错误');
                 }}
               />
             </>
@@ -251,7 +252,7 @@ const Login: React.FC = () => {
             <ProFormCheckbox noStyle>自动登录</ProFormCheckbox>
             <a
               onClick={() => {
-                message.warning('由于安全原因，该功能暂时停用，请联系网站管理员！');
+                message.warning('项目演示模式，该功能暂时禁用');
               }}
               style={{ float: 'right' }}
             >

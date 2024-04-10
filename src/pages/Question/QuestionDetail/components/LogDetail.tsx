@@ -8,7 +8,7 @@ import {
   submitStatusText,
   SUBMIT_STATUS,
 } from '@/utils/constants';
-import { useModel, useNavigate } from '@@/exports';
+import { useModel, useNavigate, useSearchParams } from '@@/exports';
 import { ClockCircleOutlined, CloseOutlined } from '@ant-design/icons';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { Avatar, Button, Divider, Skeleton, Tag } from 'antd';
@@ -24,7 +24,7 @@ type LogDetailProps = {
 
 const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterClose }) => {
   const navigate = useNavigate();
-  const urlSearchParams = new URLSearchParams(location.search);
+  const [urlSearchParams] = useSearchParams();
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
 

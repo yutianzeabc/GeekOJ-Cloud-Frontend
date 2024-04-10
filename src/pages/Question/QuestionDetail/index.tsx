@@ -8,7 +8,7 @@ import { getSafeQuestionById } from '@/services/question/api';
 import { doQuestionSubmit } from '@/services/questionSubmit/api';
 import { IconFont } from '@/utils';
 import { Color } from '@/utils/constants';
-import { useModel, useParams } from '@@/exports';
+import { terminal, useModel, useParams, useSearchParams } from '@@/exports';
 import { history } from '@umijs/max';
 import { Button, Card, Col, Divider, message, Row, Skeleton, Space, Tabs, TabsProps } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
@@ -32,7 +32,7 @@ const cardStyle: React.CSSProperties = {
 
 const QuestionDetail: React.FC = () => {
   const navigate = useNavigate();
-  const urlSearchParams = new URLSearchParams(location.search);
+  const [urlSearchParams] = useSearchParams();
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
 
@@ -180,7 +180,7 @@ const QuestionDetail: React.FC = () => {
     if (question) {
       setResultLoading(true);
       doQuestionSubmit({ code, language, questionId: question.id }).then((res) => {
-        console.log(res);
+        terminal.log(res);
         //将搜索参数拼接到query上
         changeTargetSubmitId(res.data.id.toString());
         //如果当前在提交记录tab，要刷新

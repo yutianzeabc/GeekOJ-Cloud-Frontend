@@ -14,7 +14,7 @@ interface ResponseStructure {
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const requestConfig: RequestConfig = {
-  baseURL: 'http://localhost:8100/api',
+  baseURL: BASE_URL,
   withCredentials: true,
   timeout: 300000,
 

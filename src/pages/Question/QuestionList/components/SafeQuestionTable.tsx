@@ -1,7 +1,7 @@
 import { getQuestionTags, listSafeQuestionVoByPage } from '@/services/question/api';
 import { IconFont } from '@/utils';
 import { Color, UserRole } from '@/utils/constants';
-import { history, useModel, useNavigate } from '@@/exports';
+import { history, useModel, useNavigate, useSearchParams } from '@@/exports';
 import {
   CheckCircleOutlined,
   CheckOutlined,
@@ -17,7 +17,7 @@ const SafeQuestionTable: React.FC = () => {
   const navigate = useNavigate();
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
-  const urlSearchParams = new URLSearchParams(location.search);
+  const [urlSearchParams] = useSearchParams();
   const [dataSource, setDataSource] = useState<Question.SafeQuestion[]>([]);
   const [options, setOptions] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);

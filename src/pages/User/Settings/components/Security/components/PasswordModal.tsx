@@ -1,4 +1,5 @@
 import { updatePwd } from '@/services/user/api';
+import { terminal } from '@@/exports';
 import { Form, Input, message, Modal, Popover, Progress } from 'antd';
 import type { Store } from 'antd/es/form/interface';
 import { Divider } from 'antd/lib';
@@ -66,7 +67,7 @@ const PasswordModal: FC<PasswordModalProps> = ({ visible, onCancel }) => {
   };
 
   const onFinish = (values: Store) => {
-    console.log(values);
+    terminal.log(values);
   };
 
   const checkConfirm = (_: any, value: string) => {

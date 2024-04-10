@@ -2,6 +2,7 @@ import CreateUpdateModal from '@/pages/Admin/AdminQuestion/CreateUpdateModal';
 import { deleteQuestion, getQuestionTags, listQuestionVoByPage } from '@/services/question/api';
 import { IconFont } from '@/utils';
 import { Color } from '@/utils/constants';
+import { useSearchParams } from '@@/exports';
 import { CheckOutlined, PlusOutlined, TagsOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
@@ -14,7 +15,7 @@ import { useNavigate } from 'umi';
 
 const Admin: React.FC = () => {
   const navigate = useNavigate();
-  const urlSearchParams = new URLSearchParams(location.search);
+  const [urlSearchParams] = useSearchParams();
   const [visible, setVisible] = useState<boolean>(false);
   const [targetId, setTargetId] = useState<number>(-1);
   const [dataSource, setDataSource] = useState<Question.Question[]>([]);

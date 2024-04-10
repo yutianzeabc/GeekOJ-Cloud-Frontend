@@ -1,11 +1,13 @@
 import { CheckCircleOutlined, CloseCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
-const BACKEND_DOMAIN: string = 'geektip.cc';
-// 用于gitee登录
-const CLIENT_ID: string = '8a4cc9702a22c7b8ebdf63a26a8744151a03787a0e56103babbd8446fc55a191';
-export const BASE_URL: string = `https://oj.${BACKEND_DOMAIN}/api`;
-const REDIRECT_URI: string = `${BASE_URL}/user/oauth2.0/gitee/success`;
-export const GITEE_OAUTH_URL: string = `https://gitee.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+// 从UMI define中获取全局变量
+declare global {
+  const BASE_URL: string;
+  const GITEE_CLIENT_ID: string;
+}
+// Gitee OAuth
+const GITEE_REDIRECT_URI: string = `${BASE_URL}/user/oauth2.0/gitee/success`;
+export const GITEE_OAUTH_URL: string = `https://gitee.com/oauth/authorize?client_id=${GITEE_CLIENT_ID}&redirect_uri=${GITEE_REDIRECT_URI}&response_type=code`;
 
 export const GuestUser: User.UserInfo = {
   uid: -1,
@@ -13,9 +15,6 @@ export const GuestUser: User.UserInfo = {
   userRole: 'guest',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
 };
-
-// 定义允许 guest 访问的路径数组
-export const GuestAllowedPaths = ['/question/list', '/status/list'];
 
 export const UserRole = {
   ADMIN: 'admin',

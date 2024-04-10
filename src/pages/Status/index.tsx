@@ -3,6 +3,7 @@ import { listAllQuestionSubmitVoByPage } from '@/services/questionSubmit/api';
 import { IconFont } from '@/utils';
 import { languageLabel, UserRole } from '@/utils/constants';
 import { history } from '@@/core/history';
+import { useSearchParams } from '@@/exports';
 import { RedoOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
@@ -16,7 +17,7 @@ const SubmitStatus: React.FC = () => {
   const navigate = useNavigate();
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
-  const urlSearchParams = new URLSearchParams(location.search);
+  const [urlSearchParams] = useSearchParams();
   const [visible, setVisible] = useState<boolean>(false);
   const [targetId, setTargetId] = useState<number>(-1);
   const [dataSource, setDataSource] = useState<QuestionSubmit.QuestionSubmit[]>([]);

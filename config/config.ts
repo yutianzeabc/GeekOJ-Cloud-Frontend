@@ -109,6 +109,13 @@ export default defineConfig({
    * @doc https://umijs.org/docs/max/access
    */
   access: {},
+  define: {
+    'process.env.NODE_ENV': process.env.NODE_ENV,
+    'process.env.HMR': process.env.HMR,
+    'process.env.SOCKET_SERVER': process.env.ERROR_OVERLAY,
+    BASE_URL: 'http://localhost:8100/api',
+    GITEE_CLIENT_ID: '8a4cc9702a22c7b8ebdf63a26a8744151a03787a0e56103babbd8446fc55a191',
+  },
   /**
    * @name <head> 中额外的 script
    * @description 配置 <head> 中额外的 script
@@ -125,6 +132,7 @@ export default defineConfig({
   mfsu: {
     strategy: 'normal',
   },
+  codeSplitting: { jsStrategy: 'granularChunks' },
   requestRecord: {},
   chainWebpack(memo) {
     // 代码高亮显示

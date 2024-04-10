@@ -1,7 +1,7 @@
 import { listMyQuestionSubmitVoByPage } from '@/services/questionSubmit/api';
 import { IconFont } from '@/utils';
 import { Color, languageLabel } from '@/utils/constants';
-import { useNavigate } from '@@/exports';
+import { useNavigate, useSearchParams } from '@@/exports';
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { Button, Tooltip } from 'antd';
@@ -15,7 +15,7 @@ const SubmitLog: React.ForwardRefExoticComponent<
     React.RefAttributes<unknown>
 > = forwardRef(({ questionId }, ref) => {
   const navigate = useNavigate();
-  const urlSearchParams = new URLSearchParams(location.search);
+  const [urlSearchParams] = useSearchParams();
   //搜索参数
   const targetSubmitId = Number(urlSearchParams.get('targetSubmitId')) || -1;
   const [pageNum, setPageNum] = useState(() => {

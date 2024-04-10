@@ -1,4 +1,5 @@
 import { getQuestionSubmitVoById } from '@/services/questionSubmit/api';
+import { terminal } from '@@/exports';
 import { Button, Modal } from 'antd';
 import MdEditor from 'md-editor-rt';
 import React, { useEffect, useState } from 'react';
@@ -22,7 +23,7 @@ const ViewCodeModal: React.FC<ViewCodeModalProps> = ({ visible, targetId, onDone
     if (targetId > 0) {
       getQuestionSubmitVoById(targetId).then((res) => {
         if (res.code === 200) {
-          console.log(res.data);
+          terminal.log(res.data);
           const questionSubmitVo: QuestionSubmit.QuestionSubmit = res.data;
           if (questionSubmitVo.code !== null) {
             setSourceCode(questionSubmitVo.code);

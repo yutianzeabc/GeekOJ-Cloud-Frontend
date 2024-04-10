@@ -91,8 +91,8 @@ export async function getAllTags(options?: { [key: string]: any }) {
 }
 
 export async function addATag(body: User.UserTagAddRequest, options?: { [key: string]: any }) {
-  return request<API.R>('/user/tags', {
-    method: 'PUT',
+  return request<API.R>('/user/tags/add', {
+    method: 'POST',
     data: body,
     ...(options || {}),
   });
@@ -130,42 +130,42 @@ export async function bindEmail(params: User.BindEmailParams, options?: { [key: 
   });
 }
 
-/**
- * 关注用户
- */
-export async function follow(uid: number, options?: { [key: string]: any }) {
-  return request<API.R>(`/user/follow/${uid}`, {
-    method: 'POST',
-    ...(options || {}),
-  });
-}
-
-/**
- * 获取关注列表
- */
-export async function getFollowsOfCurrent(options?: { [key: string]: any }) {
-  return request<API.R>(`/user/follows/of/current`, {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/**
- * 获取关注列表
- */
-export async function getFollowsByUid(uid: number, options?: { [key: string]: any }) {
-  return request<API.R>(`/user/follows/of/${uid}`, {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/**
- * 获取粉丝列表
- */
-export async function getFansByUid(uid: number, options?: { [key: string]: any }) {
-  return request<API.R>(`/user/fans/of/${uid}`, {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
+// /**
+//  * 关注用户
+//  */
+// export async function follow(uid: number, options?: { [key: string]: any }) {
+//   return request<API.R>(`/user/follow/${uid}`, {
+//     method: 'POST',
+//     ...(options || {}),
+//   });
+// }
+//
+// /**
+//  * 获取关注列表
+//  */
+// export async function getFollowsOfCurrent(options?: { [key: string]: any }) {
+//   return request<API.R>(`/user/follows/of/current`, {
+//     method: 'GET',
+//     ...(options || {}),
+//   });
+// }
+//
+// /**
+//  * 获取关注列表
+//  */
+// export async function getFollowsByUid(uid: number, options?: { [key: string]: any }) {
+//   return request<API.R>(`/user/follows/of/${uid}`, {
+//     method: 'GET',
+//     ...(options || {}),
+//   });
+// }
+//
+// /**
+//  * 获取粉丝列表
+//  */
+// export async function getFansByUid(uid: number, options?: { [key: string]: any }) {
+//   return request<API.R>(`/user/fans/of/${uid}`, {
+//     method: 'GET',
+//     ...(options || {}),
+//   });
+// }

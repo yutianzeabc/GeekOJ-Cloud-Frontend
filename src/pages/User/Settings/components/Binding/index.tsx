@@ -8,7 +8,7 @@ const BindingView: React.FC = () => {
       title: '绑定码云',
       description: '当前未绑定码云账号',
       actions: [
-        <a onClick={() => message.info('功能待完善')} key="Bind">
+        <a onClick={() => message.warning('项目演示模式，该功能暂时禁用')} key="Bind">
           绑定
         </a>,
       ],

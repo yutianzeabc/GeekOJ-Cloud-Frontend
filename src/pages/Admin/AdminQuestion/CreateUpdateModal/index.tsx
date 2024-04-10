@@ -1,4 +1,5 @@
 import { createQuestion, getQuestionVoById, updateQuestion } from '@/services/question/api';
+import { terminal } from '@@/exports';
 import { PlusOutlined } from '@ant-design/icons';
 import { EditableProTable, ProColumns, ProFormText } from '@ant-design/pro-components';
 import { ProForm, ProFormInstance } from '@ant-design/pro-form';
@@ -86,7 +87,7 @@ const CreateUpdateModal: React.FC<CreateModalProps> = ({
     if (targetId > 0) {
       getQuestionVoById(targetId).then((res) => {
         if (res.code === 200) {
-          console.log(res.data);
+          terminal.log(res.data);
           const questionVo: Question.Question = res.data;
 
           formRef.current?.setFieldValue('title', questionVo.title);
@@ -137,7 +138,7 @@ const CreateUpdateModal: React.FC<CreateModalProps> = ({
       },
     };
 
-    console.log(params);
+    terminal.log(params);
 
     if (targetId === -1) {
       createQuestion(params).then((res) => {
@@ -172,7 +173,6 @@ const CreateUpdateModal: React.FC<CreateModalProps> = ({
 
   const handleClose = (removedTag: string) => {
     const newTags = tags.filter((tag) => tag !== removedTag);
-    console.log(newTags);
     setTags(newTags);
   };
 
