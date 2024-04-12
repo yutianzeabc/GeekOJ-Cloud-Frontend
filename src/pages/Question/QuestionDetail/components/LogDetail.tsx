@@ -39,8 +39,11 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
           if (res.code === 200) {
             setLoading(false);
             setQuestionSubmit(res.data);
-            // 如果状态是成功，则停止刷新
-            if (questionSubmit?.status === SUBMIT_STATUS.SUCCEED) {
+            // 如果状态为成功或失败，则停止刷新
+            if (
+              questionSubmit?.status === SUBMIT_STATUS.SUCCEED ||
+              questionSubmit?.status === SUBMIT_STATUS.FAILED
+            ) {
               clearInterval(intervalId);
             }
           }
@@ -51,19 +54,15 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
     // 定义一个启动定时器的函数
     const startInterval = () => {
       return setInterval(() => {
-        // 只有当questionSubmit未定义或其状态不是成功时，才进行数据刷新
-        if (!questionSubmit || questionSubmit.status !== SUBMIT_STATUS.SUCCEED) {
-          fetchData();
-        }
+        fetchData();
       }, 5000); // 每5秒刷新一次数据
     };
 
     fetchData(); // 首次加载时调用
 
     intervalId = startInterval(); // 启动定时器
-
     return () => clearInterval(intervalId); // 组件卸载时清除定时器
-  }, [targetSubmitId, questionSubmit]); // 添加questionSubmit作为依赖项
+  }, [targetSubmitId, questionSubmit]);
 
   const closeDetail = () => {
     // 将搜索参数拼接到query上
