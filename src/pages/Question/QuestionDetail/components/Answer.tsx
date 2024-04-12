@@ -1,4 +1,5 @@
 import { useEmotionCss } from '@ant-design/use-emotion-css';
+import { Empty } from 'antd';
 import MdEditor from 'md-editor-rt';
 import React from 'react';
 
@@ -21,7 +22,11 @@ const Answer: React.FC<AnsProps> = ({ answer }) => {
 
   return (
     <div className={catalog}>
-      <MdEditor previewOnly={true} modelValue={answer} editorId="answer" />
+      {answer && answer.length > 0 ? (
+        <MdEditor previewOnly={true} modelValue={answer} editorId="answer" />
+      ) : (
+        <Empty />
+      )}
     </div>
   );
 };

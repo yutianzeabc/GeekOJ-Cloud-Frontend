@@ -14,7 +14,7 @@ interface ResponseStructure {
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const requestConfig: RequestConfig = {
-  baseURL: BASE_URL,
+  baseURL: BACKEND_URL,
   withCredentials: true,
   timeout: 300000,
 

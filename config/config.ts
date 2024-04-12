@@ -113,7 +113,7 @@ export default defineConfig({
     'process.env.NODE_ENV': process.env.NODE_ENV,
     'process.env.HMR': process.env.HMR,
     'process.env.SOCKET_SERVER': process.env.ERROR_OVERLAY,
-    BASE_URL: 'http://localhost:8100/api',
+    BACKEND_URL: 'https://oj.geektip.cc/api',
     GITEE_CLIENT_ID: '8a4cc9702a22c7b8ebdf63a26a8744151a03787a0e56103babbd8446fc55a191',
   },
   /**

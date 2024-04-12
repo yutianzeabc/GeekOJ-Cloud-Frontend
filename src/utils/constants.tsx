@@ -2,11 +2,11 @@ import { CheckCircleOutlined, CloseCircleOutlined, MinusCircleOutlined } from '@
 
 // 从UMI define中获取全局变量
 declare global {
-  const BASE_URL: string;
+  const BACKEND_URL: string;
   const GITEE_CLIENT_ID: string;
 }
 // Gitee OAuth
-const GITEE_REDIRECT_URI: string = `${BASE_URL}/user/oauth2.0/gitee/success`;
+const GITEE_REDIRECT_URI: string = `${BACKEND_URL}/user/oauth2.0/gitee/success`;
 export const GITEE_OAUTH_URL: string = `https://gitee.com/oauth/authorize?client_id=${GITEE_CLIENT_ID}&redirect_uri=${GITEE_REDIRECT_URI}&response_type=code`;
 
 export const GuestUser: User.UserInfo = {

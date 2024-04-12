@@ -55,7 +55,7 @@ const Login: React.FC = () => {
   };
 
   const goAuth = async () => {
-    message.warning('项目演示模式，该功能暂时禁用');
+    message.warning('线上演示模式，该功能暂时禁用');
     // history.push(GITEE_OAUTH_URL);
   };
 
@@ -252,7 +252,7 @@ const Login: React.FC = () => {
             <ProFormCheckbox noStyle>自动登录</ProFormCheckbox>
             <a
               onClick={() => {
-                message.warning('项目演示模式，该功能暂时禁用');
+                message.warning('线上演示模式，该功能暂时禁用');
               }}
               style={{ float: 'right' }}
             >
