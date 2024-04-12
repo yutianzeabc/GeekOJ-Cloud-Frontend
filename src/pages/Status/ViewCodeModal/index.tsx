@@ -52,7 +52,7 @@ const ViewCodeModal: React.FC<ViewCodeModalProps> = ({ visible, targetId, onDone
       <MdEditor
         previewOnly={true}
         modelValue={`\`\`\`\n${sourceCode}\n\`\`\`` || ''}
-        editorId="log"
+        editorId="view"
       />
     </Modal>
   );
