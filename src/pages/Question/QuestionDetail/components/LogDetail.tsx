@@ -33,36 +33,35 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
-    const fetchData = () => {
+
+    const fetchData = async () => {
       if (targetSubmitId > 0) {
-        getQuestionSubmitVoById(targetSubmitId).then((res) => {
-          if (res.code === 200) {
-            setLoading(false);
-            setQuestionSubmit(res.data);
-            // 如果状态为成功或失败，则停止刷新
-            if (
-              questionSubmit?.status === SUBMIT_STATUS.SUCCEED ||
-              questionSubmit?.status === SUBMIT_STATUS.FAILED
-            ) {
-              clearInterval(intervalId);
-            }
+        const res = await getQuestionSubmitVoById(targetSubmitId);
+        if (res.code === 200) {
+          setQuestionSubmit(res.data);
+          setLoading(false);
+          // 如果已经得到结果，停止定时器
+          if (
+            res.data.status === SUBMIT_STATUS.SUCCEED ||
+            res.data.status === SUBMIT_STATUS.FAILED
+          ) {
+            clearInterval(intervalId);
           }
-        });
+        }
       }
     };
-
-    // 定义一个启动定时器的函数
+    // 用于开启定时器
     const startInterval = () => {
-      return setInterval(() => {
-        fetchData();
-      }, 5000); // 每5秒刷新一次数据
+      return setInterval(fetchData, 5000); // 5s
     };
+    // 初始化获取数据
+    fetchData();
+    // 开启定时器
+    intervalId = startInterval();
 
-    fetchData(); // 首次加载时调用
-
-    intervalId = startInterval(); // 启动定时器
-    return () => clearInterval(intervalId); // 组件卸载时清除定时器
-  }, [targetSubmitId, questionSubmit]);
+    // 清除定时器
+    return () => clearInterval(intervalId);
+  }, [targetSubmitId]);
 
   const closeDetail = () => {
     // 将搜索参数拼接到query上
