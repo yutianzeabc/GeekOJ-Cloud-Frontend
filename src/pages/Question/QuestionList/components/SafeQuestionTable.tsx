@@ -146,14 +146,24 @@ const SafeQuestionTable: React.FC = () => {
     },
     {
       title: '题目',
-      width: '20%',
+      width: '18%',
       ellipsis: true,
-      render: (_, question) => <>{`${question.id}. ${question.title}`}</>,
+      render: (_, entity) => (
+        <a
+          onClick={() => {
+            if (!currentUser || currentUser.userRole === UserRole.GUEST) {
+              history.push(`/user/login?redirect=/question/${entity.id}`);
+              return;
+            }
+            history.push(`/question/${entity.id}`);
+          }}
+        >{`${entity.id}. ${entity.title}`}</a>
+      ),
     },
     {
       title: '标签',
       ellipsis: true,
-      width: '20%',
+      width: '22%',
       render: (_, record) => (
         <Space>
           {record.tags.map((tag) => (
@@ -164,7 +174,7 @@ const SafeQuestionTable: React.FC = () => {
     },
     {
       title: '通过率',
-      width: '10%',
+      width: '8%',
       align: 'center',
       render: (dom, entity) => {
         return <>{((entity.acceptedNum / entity.submitNum || 0) * 100).toFixed(2)}%</>;
@@ -172,7 +182,7 @@ const SafeQuestionTable: React.FC = () => {
     },
     {
       title: '难度',
-      width: '5%',
+      width: '6%',
       align: 'center',
       render: (_, entity) => {
         return (
@@ -194,7 +204,7 @@ const SafeQuestionTable: React.FC = () => {
       title: '操作',
       valueType: 'option',
       key: 'option',
-      width: '5%',
+      width: '6%',
       align: 'center',
       render: (dom, entity) => {
         return (
