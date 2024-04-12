@@ -45,6 +45,8 @@ const Admin: React.FC = () => {
       keyword: keyword,
       difficulty: difficulty === '全部' ? '' : difficulty,
       tags: selectedTags,
+      sortField: 'id',
+      sortOrder: 'ascend',
     }).then((res) => {
       if (res.code === 200) {
         setDataSource(res.data.records);
