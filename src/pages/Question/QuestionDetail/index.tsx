@@ -7,7 +7,7 @@ import { doQuestionRun } from '@/services/judge/api';
 import { getSafeQuestionById } from '@/services/question/api';
 import { doQuestionSubmit } from '@/services/questionSubmit/api';
 import { IconFont } from '@/utils';
-import { Color } from '@/utils/constants';
+import { CODE_TEMPLATE, Color } from '@/utils/constants';
 import { terminal, useModel, useParams, useSearchParams } from '@@/exports';
 import { history } from '@umijs/max';
 import { Button, Card, Col, Divider, message, Row, Skeleton, Space, Tabs, TabsProps } from 'antd';
@@ -50,7 +50,7 @@ const QuestionDetail: React.FC = () => {
   const [logHeight, setLogHeight] = useState<string>('calc(100vh - 180px)');
   const [terminalOpen, setTerminalOpen] = useState<boolean>(false);
 
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(CODE_TEMPLATE.get('java') || '');
 
   const [language, setLanguage] = useState('java');
 
@@ -167,7 +167,7 @@ const QuestionDetail: React.FC = () => {
     setTestResultLoading(true);
     doQuestionRun({ code, language, input: testInput }).then((res) => {
       if (res.code === 200) {
-        message.success('运行成功！');
+        message.success('运行完成！');
         setActiveTerminal('2');
         setTestResult(res.data);
         setTestResultLoading(false);

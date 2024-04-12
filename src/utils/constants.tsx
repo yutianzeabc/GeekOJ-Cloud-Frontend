@@ -88,3 +88,18 @@ export const JUDGE_INFO_STATUS = {
   RUNTIME_ERROR: 'Runtime Error',
   SYSTEM_ERROR: 'System Error',
 };
+
+export const CODE_TEMPLATE = new Map<string, string>([
+  [
+    'java',
+    'import java.util.*;\r\n\r\nclass Main {\r\n    public static void main(String[] args) {\r\n        // 此处开始作答\r\n        \r\n    }\r\n}',
+  ],
+  [
+    'cpp',
+    '#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nint main () {\r\n    // 此处开始作答\r\n    \r\n}',
+  ],
+  [
+    'go',
+    'package main\r\n\r\nimport "fmt"\r\n\r\nfunc main() {\r\n    // 此处开始作答\r\n    \r\n}',
+  ],
+]);

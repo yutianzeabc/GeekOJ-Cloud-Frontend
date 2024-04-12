@@ -1,3 +1,4 @@
+import { CODE_TEMPLATE } from '@/utils/constants';
 import { Divider, Select } from 'antd';
 import React from 'react';
 import MonacoEditor from 'react-monaco-editor';
@@ -38,6 +39,7 @@ const Editor: React.FC<EditorProps> = ({ code, setCode, language, setLanguage, c
           value={language}
           onChange={(value) => {
             setLanguage(value);
+            setCode(CODE_TEMPLATE.get(value) || '');
           }}
           style={{ width: 100, margin: '8px 0 0 8px' }}
           options={[

@@ -252,7 +252,7 @@ const Login: React.FC = () => {
             <ProFormCheckbox noStyle>自动登录</ProFormCheckbox>
             <a
               onClick={() => {
-                message.warning('线上演示模式，该功能暂时禁用');
+                message.info('功能待完善');
               }}
               style={{ float: 'right' }}
             >
