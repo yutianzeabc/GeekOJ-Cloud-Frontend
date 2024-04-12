@@ -176,57 +176,59 @@ const QuestionSet: React.FC = () => {
   }, []);
 
   return (
-    <Row>
-      <Col span={17} style={{ paddingRight: 8 }}>
-        <SafeQuestionTable />
-      </Col>
+    <div>
+      <Row>
+        <Col span={17} style={{ paddingRight: 8 }}>
+          <SafeQuestionTable />
+        </Col>
 
-      <Col span={7}>
-        <Card title="当前进度" style={{ borderRadius: 4 }} bodyStyle={{ padding: 16 }}>
-          <Row justify="space-around" align="middle">
-            <Col span={10}>
-              <div style={{ width: '100%', height: 139 }} id="main"></div>
-            </Col>
+        <Col span={7}>
+          <Card title="当前进度" style={{ borderRadius: 4 }} bodyStyle={{ padding: 16 }}>
+            <Row justify="space-around" align="middle">
+              <Col span={10}>
+                <div style={{ width: '100%', height: 139 }} id="main"></div>
+              </Col>
 
-            <Col span={14}>
-              <Row>
-                <Col
-                  span={8}
-                  style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-                >
-                  <div style={{ fontSize: 14, color: 'rgba(0, 0, 0, 0.45)' }}>通过数</div>
-                  <div style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>
-                    {summary?.passCount}
-                  </div>
-                </Col>
-                <Col
-                  span={8}
-                  style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-                >
-                  <div style={{ fontSize: 14, color: 'rgba(0, 0, 0, 0.45)' }}>提交数</div>
-                  <div style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>
-                    {summary?.submitCount}
-                  </div>
-                </Col>
-                <Col
-                  span={8}
-                  style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-                >
-                  <div style={{ fontSize: 14, color: 'rgba(0, 0, 0, 0.45)' }}>通过率</div>
-                  <div style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>
-                    {(summary?.passCount || summary?.submitCount
-                      ? (summary?.passCount / summary?.submitCount) * 100
-                      : 0
-                    ).toFixed(2)}
-                    %
-                  </div>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Card>
-      </Col>
-    </Row>
+              <Col span={14}>
+                <Row>
+                  <Col
+                    span={8}
+                    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+                  >
+                    <div style={{ fontSize: 14, color: 'rgba(0, 0, 0, 0.45)' }}>通过数</div>
+                    <div style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>
+                      {summary?.passCount}
+                    </div>
+                  </Col>
+                  <Col
+                    span={8}
+                    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+                  >
+                    <div style={{ fontSize: 14, color: 'rgba(0, 0, 0, 0.45)' }}>提交数</div>
+                    <div style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>
+                      {summary?.submitCount}
+                    </div>
+                  </Col>
+                  <Col
+                    span={8}
+                    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+                  >
+                    <div style={{ fontSize: 14, color: 'rgba(0, 0, 0, 0.45)' }}>通过率</div>
+                    <div style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>
+                      {(summary?.passCount || summary?.submitCount
+                        ? (summary?.passCount / summary?.submitCount) * 100
+                        : 0
+                      ).toFixed(2)}
+                      %
+                    </div>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

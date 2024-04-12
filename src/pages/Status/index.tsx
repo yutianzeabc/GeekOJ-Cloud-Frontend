@@ -211,36 +211,38 @@ const SubmitStatus: React.FC = () => {
   }, []);
 
   return (
-    <Card bodyStyle={{ padding: 0 }} style={{ borderRadius: 4 }}>
-      <ProTable<QuestionSubmit.QuestionSubmit>
-        loading={loading}
-        dataSource={dataSource}
-        columns={columns}
-        rowKey="id"
-        search={false}
-        options={false}
-        pagination={{
-          total: total,
-          current: pageNum,
-          pageSize: 10,
-          onChange: changePage,
-        }}
-        headerTitle="评测状态"
-        toolBarRender={() => [
-          <Button
-            key="button"
-            icon={<RedoOutlined />}
-            onClick={reloadData}
-            type="primary"
-            loading={loading}
-          >
-            点击刷新
-          </Button>,
-        ]}
-      />
+    <div>
+      <Card bodyStyle={{ padding: 0 }} style={{ borderRadius: 4 }}>
+        <ProTable<QuestionSubmit.QuestionSubmit>
+          loading={loading}
+          dataSource={dataSource}
+          columns={columns}
+          rowKey="id"
+          search={false}
+          options={false}
+          pagination={{
+            total: total,
+            current: pageNum,
+            pageSize: 10,
+            onChange: changePage,
+          }}
+          headerTitle="评测状态"
+          toolBarRender={() => [
+            <Button
+              key="button"
+              icon={<RedoOutlined />}
+              onClick={reloadData}
+              type="primary"
+              loading={loading}
+            >
+              点击刷新
+            </Button>,
+          ]}
+        />
 
-      <ViewCodeModal visible={visible} targetId={targetId} onDone={onViewDone} />
-    </Card>
+        <ViewCodeModal visible={visible} targetId={targetId} onDone={onViewDone} />
+      </Card>
+    </div>
   );
 };
 
