@@ -210,11 +210,11 @@ const QuestionDetail: React.FC = () => {
     } else if (activeTerminal === '2') {
       return testResult ? (
         <>
-          <div style={labelStyle}>输入</div>
-          <div style={cardStyle}>{testResult.input}</div>
-          <div style={{ marginTop: 16 }}></div>
           <div style={labelStyle}>输出</div>
           <div style={cardStyle}>{testResult.output}</div>
+          <div style={{ marginTop: 16 }}></div>
+          <div style={labelStyle}>输入</div>
+          <div style={cardStyle}>{testResult.input}</div>
         </>
       ) : testResultLoading ? (
         <Skeleton paragraph={{ rows: 4 }}></Skeleton>
