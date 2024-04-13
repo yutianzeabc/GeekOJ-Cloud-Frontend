@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
 import { getPhoneCaptcha, login, loginByPhone } from '@/services/user/api';
 import { IconFont, StringUtils } from '@/utils';
-// import {GITEE_OAUTH_URL} from '@/utils/constants';
+import { GITEE_OAUTH_URL } from '@/utils/constants';
 import { terminal } from '@@/exports';
 import { LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons';
 import {
@@ -55,8 +55,7 @@ const Login: React.FC = () => {
   };
 
   const goAuth = async () => {
-    message.warning('线上演示模式，该功能暂时禁用');
-    // history.push(GITEE_OAUTH_URL);
+    history.push(GITEE_OAUTH_URL);
   };
 
   const ActionIcons = () => {
