@@ -116,19 +116,13 @@ const SubmitLog: React.ForwardRefExoticComponent<
       title: '执行用时',
       width: '20%',
       align: 'center',
-      render: (_, questionSubmit) => (
-        <>{questionSubmit.judgeInfo.time !== 0 ? `${questionSubmit.judgeInfo.time} ms` : 'N/A'}</>
-      ),
+      render: (_, questionSubmit) => <>{`${questionSubmit.judgeInfo.time || 0} ms`}</>,
     },
     {
       title: '消耗内存',
       width: '20%',
       align: 'center',
-      render: (_, questionSubmit) => (
-        <>
-          {questionSubmit.judgeInfo.memory !== 0 ? `${questionSubmit.judgeInfo.memory} MB` : 'N/A'}
-        </>
-      ),
+      render: (_, questionSubmit) => <>{`${questionSubmit.judgeInfo.memory || 0} MB`}</>,
     },
     {
       title: '时间',

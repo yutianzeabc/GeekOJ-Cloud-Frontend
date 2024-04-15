@@ -215,9 +215,9 @@ const QuestionSet: React.FC = () => {
                   >
                     <div style={{ fontSize: 14, color: 'rgba(0, 0, 0, 0.45)' }}>通过率</div>
                     <div style={{ fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>
-                      {(summary?.passCount || summary?.submitCount
-                        ? (summary?.passCount / summary?.submitCount) * 100
-                        : 0
+                      {((summary?.submitCount || 0) === 0
+                        ? 0
+                        : ((summary?.passCount || 0) / (summary?.submitCount || 0)) * 100
                       ).toFixed(2)}
                       %
                     </div>

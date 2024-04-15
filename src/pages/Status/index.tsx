@@ -124,8 +124,8 @@ const SubmitStatus: React.FC = () => {
       render: (dom, entity) => {
         return (
           <>
-            <Tag icon={<IconFont type="icon-miaobiao" />}>{entity.judgeInfo.time} ms</Tag>
-            <Tag icon={<IconFont type="icon-neicun" />}>{entity.judgeInfo.memory} MB</Tag>
+            <Tag icon={<IconFont type="icon-miaobiao" />}>{entity.judgeInfo.time || 0} ms</Tag>
+            <Tag icon={<IconFont type="icon-neicun" />}>{entity.judgeInfo.memory || 0} MB</Tag>
           </>
         );
       },
