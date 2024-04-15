@@ -23,6 +23,7 @@ export const UserRole = {
 };
 
 export const Color = {
+  UNKNOWN: '#4096ff',
   EASY: '#00AF9B',
   MEDIUM: '#FFB800',
   HARD: '#FF2D55',

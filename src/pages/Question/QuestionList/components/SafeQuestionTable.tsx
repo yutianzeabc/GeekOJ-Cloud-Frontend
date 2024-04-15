@@ -6,6 +6,7 @@ import {
   CheckCircleOutlined,
   CheckOutlined,
   CloseCircleOutlined,
+  QuestionCircleOutlined,
   TagsOutlined,
 } from '@ant-design/icons';
 import { ProColumns, ProTable } from '@ant-design/pro-components';
@@ -142,7 +143,7 @@ const SafeQuestionTable: React.FC = () => {
           )) ||
             (question.status === '已通过' && (
               <CheckCircleOutlined style={{ fontSize: 18, color: Color.EASY }} />
-            ))}
+            )) || <QuestionCircleOutlined style={{ fontSize: 18, color: Color.UNKNOWN }} />}
         </>
       ),
     },
