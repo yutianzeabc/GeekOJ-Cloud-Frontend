@@ -69,8 +69,8 @@ const SubmitStatus: React.FC = () => {
       history.push('/user/login');
       return;
     }
-    setVisible(true);
     setTargetId(id);
+    setVisible(true);
   };
 
   const onViewDone = () => {

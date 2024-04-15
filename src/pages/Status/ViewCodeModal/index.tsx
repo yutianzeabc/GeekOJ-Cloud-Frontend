@@ -14,7 +14,6 @@ const ViewCodeModal: React.FC<ViewCodeModalProps> = ({ visible, targetId, onDone
   const [sourceCode, setSourceCode] = useState<string>('');
 
   const handleClose = () => {
-    setSourceCode('');
     onDone();
   };
 
