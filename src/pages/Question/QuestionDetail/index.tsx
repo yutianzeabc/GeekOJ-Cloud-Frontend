@@ -161,7 +161,7 @@ const QuestionDetail: React.FC = () => {
   const runQuestion = () => {
     if (testInput.length === 0) {
       message.info('请输入测试用例！');
-      clickTerminal();
+      if (!terminalOpen) clickTerminal();
       return;
     }
     setTestResultLoading(true);
