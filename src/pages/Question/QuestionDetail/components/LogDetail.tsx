@@ -1,3 +1,4 @@
+import { doAiAnalyse } from '@/services/ai/api';
 import { getQuestionSubmitVoById } from '@/services/questionSubmit/api';
 import {
   Color,
@@ -9,7 +10,7 @@ import {
   SUBMIT_STATUS,
 } from '@/utils/constants';
 import { useModel, useNavigate, useSearchParams } from '@@/exports';
-import { ClockCircleOutlined, CloseOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, CloseOutlined, OpenAIOutlined } from '@ant-design/icons';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { Avatar, Button, Divider, Skeleton, Tag } from 'antd';
 import MdEditor from 'md-editor-rt';
@@ -30,8 +31,13 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
 
   const [questionSubmit, setQuestionSubmit] = useState<QuestionSubmit.QuestionSubmit>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [aiAnalysing, setAiAnalysing] = useState<boolean>(false);
+  const [aiAnalyseResult, setAiAnalyseResult] = useState<string>('');
 
   useEffect(() => {
+    // 重置AI分析结果
+    setAiAnalyseResult('');
+
     let intervalId: NodeJS.Timeout;
 
     const fetchData = async () => {
@@ -77,6 +83,19 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
       search: `?${params.toString()}`,
     });
     afterClose();
+  };
+
+  const aiAnalyse = async (questionSubmitId: number) => {
+    if (aiAnalysing) return;
+    if (questionSubmitId > 0) {
+      setAiAnalysing(true);
+      const res = await doAiAnalyse({ questionSubmitId });
+      if (res.code === 200) {
+        const aiAnalyseResult = res.data as AiAnalyse.AiAnalyseResult;
+        setAiAnalyseResult(aiAnalyseResult.aiAnalyseResult);
+      }
+      setAiAnalysing(false);
+    }
   };
 
   const closeCss = useEmotionCss(() => {
@@ -132,7 +151,7 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
               </div>
             </div>
 
-            <div style={{ marginTop: 16 }}>
+            <div style={{ marginTop: 16, display: 'flex', alignItems: 'center' }}>
               <Tag style={{ borderRadius: 16, padding: '0 12px' }} color="processing">
                 {languageLabel.get(questionSubmit.language)}
               </Tag>
@@ -153,6 +172,19 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
                 >
                   {questionSubmit.judgeInfo.memory} MB
                 </Tag>
+              )}
+              {(questionSubmit.status === SUBMIT_STATUS.SUCCEED ||
+                questionSubmit.status === SUBMIT_STATUS.FAILED) && (
+                <Button
+                  type="primary"
+                  icon={<OpenAIOutlined />}
+                  disabled={!currentUser || targetSubmitId <= 0 || aiAnalyseResult !== ''}
+                  style={{ marginLeft: 'auto' }}
+                  loading={aiAnalysing}
+                  onClick={() => aiAnalyse(questionSubmit.id)}
+                >
+                  AI 智能分析
+                </Button>
               )}
             </div>
 
@@ -195,6 +227,9 @@ const LogDetail: React.FC<LogDetailProps> = ({ targetSubmitId, logHeight, afterC
               modelValue={`\`\`\`\n${questionSubmit?.code}\n\`\`\`` || ''}
               editorId="log"
             />
+            {aiAnalyseResult !== '' && (
+              <MdEditor previewOnly={true} modelValue={aiAnalyseResult} editorId="aiAnalyse" />
+            )}
           </div>
         ) : (
           <div style={{ margin: '16px 20px' }}>
